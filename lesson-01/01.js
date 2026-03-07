@@ -9,3 +9,4 @@ while (sum < maxSum) {
     sum++
     console.log(sum)
 }
+console.log(sum);
