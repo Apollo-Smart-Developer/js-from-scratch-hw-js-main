@@ -5,4 +5,10 @@
 */
 
 // your code
-let sum
+let sum = 1;
+let count = 20;
+while (sum <= count) {
+    sum = sum % sum;
+    sum++
+    console.log(sum);
+}
