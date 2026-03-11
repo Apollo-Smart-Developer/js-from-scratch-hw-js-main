@@ -13,3 +13,4 @@ while (count <= 10) {
     count++
     console.log(factorial);
 }
+    console.log(factorial);
