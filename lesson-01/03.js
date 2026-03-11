@@ -12,6 +12,6 @@ while (sum <= 20) {
         sum += count;
     }
     count++;
-
+    console.log(sum);
 }
 console.log(sum);
