@@ -5,10 +5,13 @@
 */
 
 // your code
-let sum = 1;
-let count = 20;
-while (sum <= count) {
-    sum = sum % sum;
-    sum++
-    console.log(sum);
+let sum = 0;
+let count = 1;
+while (sum <= 20) {
+    if (count % 2 !== 0) {
+        sum += count;
+    }
+    count++;
+
 }
+console.log(sum);
