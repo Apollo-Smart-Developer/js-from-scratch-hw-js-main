@@ -8,6 +8,7 @@ let count = 1;
 while (count <= 20) {
     sum += count;
     count ++;
+    console.log(sum);
 }
 console.log(sum);
 
