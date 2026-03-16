@@ -9,7 +9,7 @@
 
 let dice1 = Math.floor(Math.random() * 7) // your code
 let dice2 = Math.floor(Math.random() * 7) // your code
-let isWinningDouble = true; // your code
+let isWinningDouble = false; // your code
 
 console.log('Первый бросок: ' + dice1)
 console.log('Второй бросок: ' + dice2)
