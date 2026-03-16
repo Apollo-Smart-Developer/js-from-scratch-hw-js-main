@@ -20,4 +20,4 @@ if (isWinningDouble) {
   console.log('Не выигрышный дубль.')
 }
 
-console.log(dice1, dice2);
+console.log(isWinningDouble);
