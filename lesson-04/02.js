@@ -15,4 +15,16 @@
 Подсказка: можно использовать функцию `includesElement`, которую мы написали ранее. Переписывать её не нужно, она доступна по всему проекту за счёт hoisting.
 */
 
-function findUniqueElements() {}
+
+function findUniqueElements(array) {
+    let uniqueArray = [];
+
+    for (let i = 0; i < array.length; i++) {
+        // Если элемента ещё нет в уникальном массиве — добавляем его
+        if (!includesElement(uniqueArray, array[i])) {
+            uniqueArray[uniqueArray.length] = array[i];
+        }
+    }
+
+    return uniqueArray;
+}
