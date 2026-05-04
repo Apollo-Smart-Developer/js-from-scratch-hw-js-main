@@ -27,5 +27,5 @@ function capitalizeWords(str) {
    return result;
 }
 
-console.log(capitalizeWords(""));
+
 
