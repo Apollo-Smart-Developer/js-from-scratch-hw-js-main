@@ -5,9 +5,11 @@
 
 function isNumeric(str) {
   // your code
-    if (str === '') return false;
+    if (!str || str.trim() === "") {
+        return false;
+    }
     const num = Number(str);
-    return !isNaN(num);
+    return Number.isFinite(num);
 }
 
 // console.log(isNumeric("123")) // Ожидаемый результат: true
