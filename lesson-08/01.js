@@ -28,7 +28,7 @@ function capitalizeWords(str) {
    return result;
 }
 
-console.log(capitalizeWords("ge ge ge "))
+
 
 
 

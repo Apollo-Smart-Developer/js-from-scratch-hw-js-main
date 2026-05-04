@@ -5,7 +5,9 @@
 
 function isNumeric(str) {
   // your code
-    if (str === number)
+    if (str === '') return false;
+    const num = Number(str);
+    return !isNaN(num);
 }
 
 // console.log(isNumeric("123")) // Ожидаемый результат: true
