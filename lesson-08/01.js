@@ -9,12 +9,12 @@
 // function capitalizeWords() {}
 
 function capitalizeWords(str) {
-   let result = '';
+   let result = "";
    let newWord = true;
    for (let i = 0; i < str.length; i++) {
       const char = str[i];
 
-      if (char === '') {
+      if (char === "") {
          result += char;
          newWord = true;
       } else if (newWord) {
