@@ -86,3 +86,4 @@ petShop.addEventListener('click', function (event) {
   }
 })
 // Твой код:
+

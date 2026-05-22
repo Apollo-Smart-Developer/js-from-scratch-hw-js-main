@@ -33,11 +33,48 @@ let isTimerStarted = false
 let timerId
 
 startButton.addEventListener('click', () => {
-  let counter = 3
+  // 🔥 Защита от повторного запуска
+  if (isTimerStarted) return;
 
-  // your code
+  isTimerStarted = true;
+  let counter = 3;
+
+  // Показываем 3 немедленно
+  countdownDisplay.textContent = counter;
+
+  // Запускаем интервал
+  timerId = setInterval(() => {
+    counter--;
+
+    if (counter > 0) {
+      // Показываем 2, 1
+      countdownDisplay.textContent = counter;
+    } else {
+      // Показываем 🚀 и останавливаем таймер
+      countdownDisplay.textContent = '🚀';
+      clearInterval(timerId);
+      isTimerStarted = false;
+    }
+  }, 1000);
 })
 
 cancelButton.addEventListener('click', () => {
-  // your code
+  // 🔥 Отменяем только если таймер запущен
+  if (isTimerStarted) {
+    clearInterval(timerId);
+    countdownDisplay.textContent = 'Отменено';
+    isTimerStarted = false;
+  }
 })
+
+// startButton.addEventListener('click', () => {
+//   let counter = 3
+//   for (let i = 0; counter === 0; i++ ){
+//
+//   }
+//   // your code
+// })
+//
+// cancelButton.addEventListener('click', () => {
+//   // your code
+// })
