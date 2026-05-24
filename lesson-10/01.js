@@ -29,7 +29,14 @@ const model = {
     this.movies.push(newMovie)
     view.renderMovies(this.movies)
   },
-  // your code
+
+  // 🔥 РЕШЕНИЕ: Метод удаления фильма в Model
+  deleteMovie(id) {
+    // Фильтруем массив, оставляя все фильмы, кроме удаляемого
+    this.movies = this.movies.filter(movie => movie.id !== id);
+    // Обновляем отображение
+    view.renderMovies(this.movies);
+  }
 }
 
 const view = {
@@ -50,8 +57,20 @@ const view = {
       inputDescription.value = ''
     })
 
-    // your code
+    // 🔥 РЕШЕНИЕ: Делегирование событий для удаления фильмов
+    const list = document.querySelector('.list');
+
+    list.addEventListener('click', (event) => {
+      // Проверяем, что клик был по кнопке удаления
+      if (event.target.classList.contains('delete-button')) {
+        // Получаем id фильма из родительского <li>
+        const movieId = event.target.parentElement.id;
+        // Передаём id в контроллер
+        controller.deleteMovie(movieId);
+      }
+    });
   },
+
   renderMovies(movies) {
     const list = document.querySelector('.list')
     let moviesHTML = ''
@@ -68,6 +87,7 @@ const view = {
 
     list.innerHTML = moviesHTML
   },
+
   displayMessage(message, isError = false) {
     const messageBox = document.querySelector('.message-box')
     messageBox.textContent = message
@@ -90,7 +110,14 @@ const controller = {
       view.displayMessage('Заполните все поля!', true)
     }
   },
-  // your code
+
+  // 🔥 РЕШЕНИЕ: Метод удаления фильма в Controller
+  deleteMovie(id) {
+    // Передаём id в модель для удаления
+    model.deleteMovie(id);
+    // Показываем сообщение об успехе
+    view.displayMessage('Фильм успешно удалён!');
+  }
 }
 
 function init() {
