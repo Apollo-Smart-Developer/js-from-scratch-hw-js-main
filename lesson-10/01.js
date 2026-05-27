@@ -45,9 +45,25 @@ const view = {
   init() {
     this.renderMovies(model.movies);
 
-    const form = document.querySelector('.form');
+    // 🔥 Ищем элементы с правильными селекторами
+    const form = document.querySelector('.lesson-10 .form');
     const inputTitle = document.querySelector('.input-title');
     const inputDescription = document.querySelector('.input-description');
+    const list = document.querySelector('.lesson-10 .list');  // 🔥 Добавил .lesson-10
+
+    // 🔥 ПРОВЕРКИ: если элементы не найдены — выходим
+    if (!form) {
+      console.error('❌ Форма не найдена!');
+      return;
+    }
+    if (!inputTitle || !inputDescription) {
+      console.error('❌ Поля ввода не найдены!');
+      return;
+    }
+    if (!list) {
+      console.error('❌ Список не найден!');
+      return;
+    }
 
     // Обработчик добавления фильма
     form.addEventListener('submit', function (event) {
@@ -59,25 +75,26 @@ const view = {
       inputDescription.value = '';
     });
 
-    // 🔥 ДЕЛЕГИРОВАНИЕ: Обработчик удаления фильма
-    const list = document.querySelector('.list');
-
+    // 🔥 ДЕЛЕГИРОВАНИЕ: теперь ищем правильный список
     list.addEventListener('click', (event) => {
-      // Проверяем, что клик был именно по кнопке "Удалить"
       if (event.target.classList.contains('delete-button')) {
-        // Получаем id фильма из родительского <li>
-        // Так как id генерируется как строка — преобразование не нужно
-        const movieId = event.target.parentElement.id;
-        // Передаём id в контроллер
-        controller.deleteMovie(movieId);
+        const movieElement = event.target.closest('.movie');
+        if (movieElement) {
+          const movieId = movieElement.id;
+          controller.deleteMovie(movieId);
+        }
       }
     });
   },
 
   renderMovies(movies) {
-    const list = document.querySelector('.list');
+    const list = document.querySelector('.lesson-10 .list');
 
-    // Если фильмов нет — показываем сообщение
+    if (!list) {
+      console.error('❌ Список фильмов не найден в renderMovies!');
+      return;
+    }
+
     if (movies.length === 0) {
       list.innerHTML = '<li style="color: #666; text-align: center;">Список фильмов пуст</li>';
       return;
@@ -86,20 +103,25 @@ const view = {
     let moviesHTML = '';
     for (const movie of movies) {
       moviesHTML += `
-            <li id="${movie.id}" class="movie">
-              <div class="movie-info">
-                <b class="movie-title">${movie.title}</b>
-                <p class="movie-description">${movie.description}</p>
-              </div>
-              <button class="delete-button" type="button">Удалить 🗑</button>
-            </li>
-          `;
+        <li id="${movie.id}" class="movie">
+          <div class="movie-info">
+            <b class="movie-title">${movie.title}</b>
+            <p class="movie-description">${movie.description}</p>
+          </div>
+          <button class="delete-button" type="button">Удалить 🗑</button>
+        </li>
+      `;
     }
     list.innerHTML = moviesHTML;
   },
 
   displayMessage(message, isError = false) {
-    const messageBox = document.querySelector('.message-box');
+    const messageBox = document.querySelector('.lesson-10 .message-box');
+    if (!messageBox) {
+      console.error('❌ Message box не найден!');
+      return;
+    }
+
     messageBox.textContent = message;
 
     if (isError) {
@@ -110,7 +132,6 @@ const view = {
       messageBox.classList.add('success');
     }
 
-    // 🔥 Автоматически скрываем сообщение через 3 секунды
     setTimeout(() => {
       messageBox.textContent = '';
       messageBox.classList.remove('success', 'error');
@@ -140,3 +161,4 @@ const controller = {
 function init() {
   view.init();
 }
+document.addEventListener('DOMContentLoaded', init);
